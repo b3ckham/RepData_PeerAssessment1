@@ -67,7 +67,7 @@ timeMostSteps <-  gsub("([0-9]{1,2})([0-9]{2})", "\\1:\\2", averageStepsPerTimeB
 ##### Calculate and report the total number of missing values in the dataset
 
 ```r
-numMissingValues <- length(which(is.na(activityData$steps)))
+totalMissingValues <- length(which(is.na(activityData$steps)))
 ```
 
 ##### Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
@@ -84,15 +84,15 @@ activityDataImputed$steps <- impute(activityData$steps, fun=mean)
 
 
 ```r
-stepsByDayImputed <- tapply(activityDataImputed$steps, activityDataImputed$date, sum)
-qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
+stepsPerDayImputed <- tapply(activityDataImputed$steps, activityDataImputed$date, sum)
+qplot(stepsPerDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
 
 ```r
-stepsByDayMeanImputed <- mean(stepsByDayImputed)
-stepsByDayMedianImputed <- median(stepsByDayImputed)
+stepsPerDayMeanImputed <- mean(stepsPerDayImputed)
+stepsPerDayMedianImputed <- median(stepsPerDayImputed)
 ```
 
 
